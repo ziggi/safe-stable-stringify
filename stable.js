@@ -109,7 +109,7 @@ function stringifyFullFn (key, parent, stack, replacer, indent) {
         return res
       }
 
-      var keys = insertSort(Object.keys(value))
+      var keys = Object.keys(value)
       if (keys.length === 0) {
         return '{}'
       }
@@ -280,7 +280,7 @@ function stringifyIndent (key, value, stack, indent) {
         return res
       }
 
-      var keys = insertSort(Object.keys(value))
+      var keys = Object.keys(value)
       if (keys.length === 0) {
         return '{}'
       }
@@ -421,7 +421,7 @@ function stringifyReplacerFn (key, parent, stack, replacer) {
         return res
       }
 
-      var keys = insertSort(Object.keys(value))
+      var keys = Object.keys(value)
       if (keys.length === 0) {
         return '{}'
       }
@@ -492,7 +492,7 @@ function stringifySimple (key, value, stack) {
         return res
       }
 
-      var keys = insertSort(Object.keys(value))
+      var keys = Object.keys(value)
       if (keys.length === 0) {
         return '{}'
       }
@@ -519,20 +519,6 @@ function stringifySimple (key, value, stack) {
     case 'boolean':
       return value === true ? 'true' : 'false'
   }
-}
-
-function insertSort (arr) {
-  for (var i = 1; i < arr.length; i++) {
-    const tmp = arr[i]
-    var j = i
-    while (j !== 0 && arr[j - 1] > tmp) {
-      arr[j] = arr[j - 1]
-      j--
-    }
-    arr[j] = tmp
-  }
-
-  return arr
 }
 
 function stringify (value, replacer, spacer) {
